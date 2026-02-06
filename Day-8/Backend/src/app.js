@@ -1,7 +1,7 @@
 const express = require('express');
 const Profile = require('./models/profile.model');
 const cors = require("cors");
-
+const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -77,5 +77,11 @@ app.put('/api/profiles/:id', async (req, res) => {
     replacedProfile
   });
 });
+ 
+console.log(__dirname);
+
+app.use('*name', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+})
 
 module.exports = app;
